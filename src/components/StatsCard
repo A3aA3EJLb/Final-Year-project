@@ -1,0 +1,59 @@
+import React from 'react';
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+interface StatsCardProps {
+  title: string;
+  value: string | number;
+  icon?: React.ReactNode;
+  description?: string;
+  trend?: 'up' | 'down' | 'neutral';
+  trendValue?: string;
+  color?: string;
+}
+
+const StatsCard: React.FC<StatsCardProps> = ({
+  title,
+  value,
+  icon,
+  description,
+  trend,
+  trendValue,
+  color = 'sc2-purple',
+}) => {
+  return (
+    <Card className="sc2-card overflow-hidden">
+      <CardHeader className="flex flex-row items-center justify-between pb-2">
+        <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
+        {icon && (
+          <div className={`p-2 rounded-full bg-${color} bg-opacity-20`}>
+            {icon}
+          </div>
+        )}
+      </CardHeader>
+      <CardContent>
+        <div className="text-2xl font-bold">{value}</div>
+        {description && <p className="text-xs text-muted-foreground mt-1">{description}</p>}
+        {trend && (
+          <div className={`flex items-center mt-2 text-xs ${
+            trend === 'up' ? 'text-green-500' : 
+            trend === 'down' ? 'text-red-500' : 'text-muted-foreground'
+          }`}>
+            {trend === 'up' && (
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+                <polyline points="18 15 12 9 6 15"></polyline>
+              </svg>
+            )}
+            {trend === 'down' && (
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            )}
+            {trendValue}
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
+
+export default StatsCard;
