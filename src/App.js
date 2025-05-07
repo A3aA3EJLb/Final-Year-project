@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+//import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+//import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
 
 function App() {
     const [file, setFile] = useState(null);
